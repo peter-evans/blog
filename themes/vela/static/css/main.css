@@ -171,7 +171,7 @@ pre code {
 	text-align: left;
 	padding: 60px 0px 40px 0px;
 	position: relative;
-	max-width: 720px;
+	max-width: 700px;
 }
 .datef {
 	font-size: 16px;
@@ -187,9 +187,9 @@ pre code {
 header {
 	top: 0px;
 	left: 0px;
-	width: calc(100% - 40px);
+	width: calc(100% - 30px);
 	height: 28px;
-	padding: 10px 20px 10px 20px;
+	padding: 10px 15px 10px 15px;
 	position: fixed;
 	display: block;
 	background: rgba(255, 255, 255, 0.92);
