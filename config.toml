@@ -9,4 +9,4 @@ enableRobotsTXT = true
 
 [params]
     author = "Peter Evans"
-    description = "The blog of Peter Evans"
+    description = "Thoughts and notes on software engineering, architecture and testing."
