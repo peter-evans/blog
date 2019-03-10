@@ -1,0 +1,4 @@
+name = "Vela"
+license = "MIT"
+licenselink = "https://github.com/peter-evans/blog/blob/master/themes/vela/LICENSE"
+min_version = "0.41"

@@ -1,0 +1,12 @@
+baseUrl = "https://peterevans.dev/"
+languageCode = "en-us"
+title = "The blog of Peter Evans"
+theme = "Vela"
+disableKinds = ["taxonomy", "taxonomyTerm"]
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+enableRobotsTXT = true
+
+[params]
+    author = "Peter Evans"
+    description = "The blog of Peter Evans"

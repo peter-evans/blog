@@ -1,0 +1,9 @@
+{{ define "main" }}
+    <div class="container single">
+        <article>
+            <h2>{{ .Title }}</h2>
+            <div class="datef">{{ .Date.Format "Monday, January 2, 2006" }}</div>
+            {{ .Content }}
+        </article>
+    </div>
+{{ end }}

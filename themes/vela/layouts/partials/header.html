@@ -1,0 +1,12 @@
+<header>
+    <nav>
+        <ul class="left-nav">
+            <li><a href="https://peterevans.dev">{{ .Site.Title }}</a></li>
+        </ul>
+        <ul class="right-nav">
+            <li><a class="fab fa-twitter" href="https://twitter.com/peterevans0" target="_blank"></a></li>
+            <li><a class="fab fa-github" href="https://github.com/peter-evans" target="_blank"></a></li>
+            {{ if .RSSLink }}<li><a href="{{ .RSSLink }}" class="fas fa-rss" target="_blank"></a></li>{{ end }}
+        </ul>
+    </nav>
+</header>
