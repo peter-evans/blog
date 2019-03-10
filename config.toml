@@ -1,7 +1,7 @@
 baseUrl = "https://peterevans.dev/"
 languageCode = "en-us"
 title = "The blog of Peter Evans"
-theme = "Vela"
+theme = "vela"
 disableKinds = ["taxonomy", "taxonomyTerm"]
 pygmentsCodeFences = true
 pygmentsUseClasses = true
