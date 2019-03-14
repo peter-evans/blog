@@ -80,6 +80,7 @@ img {
 	max-width: 100%;
 	max-height: auto;
 	display: block;
+	margin-top: 30px;
 	margin-bottom: 25px;
 	margin-left: auto;
 	margin-right: auto;
@@ -90,7 +91,8 @@ hr {
 	border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #ffffff;
 }
-table {
+/* Ignore embedded gist tables */
+table:not(.highlight) {
 	width: 100%;
 	max-width: 100%;
 	margin-top: 15px;
@@ -100,17 +102,17 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-table > thead > tr > th,
-table > tbody > tr > th,
-table > tfoot > tr > th,
-table > thead > tr > td,
-table > tbody > tr > td,
-table > tfoot > tr > td {
+table:not(.highlight) > thead > tr > th,
+table:not(.highlight) > tbody > tr > th,
+table:not(.highlight) > tfoot > tr > th,
+table:not(.highlight) > thead > tr > td,
+table:not(.highlight) > tbody > tr > td,
+table:not(.highlight) > tfoot > tr > td {
 	padding: 8px;
 	line-height: 1.4;
 	border: 1px solid #dddddd
 }
-table > thead > tr > th {
+table:not(.highlight) > thead > tr > th {
 	border-bottom: 2px solid #dddddd;
 	text-align: left;
 }
@@ -182,6 +184,12 @@ pre code {
 }
 .single .datef {
 	margin-bottom: 40px;
+}
+.gist .blob-code-inner {
+    white-space: pre-wrap !important;
+}
+.gist-meta {
+	display: none;
 }
 
 header {
