@@ -3,6 +3,7 @@ title: "Smoke Testing Containers"
 date: 2019-03-14T21:18:44+09:00
 author: Peter Evans
 description: "Smoke testing Docker containers with CircleCI"
+tags: ["smoke testing", "docker", "containers", "circleci", "curl", "dockerize", "postman"]
 ---
 
 Smoke testing is a class of testing designed to determine if something is ready for more rigorous testing. The terminology appears to have [originated from plumbing](https://en.wikipedia.org/wiki/Smoke_testing_(mechanical)) where smoke is used to test for leaks in a closed system of pipes. It also seems to be widely used in electronics to refer to the practice of turning on a new piece of hardware for the first time and considering it a success if none of the components overheat and start to smoke.

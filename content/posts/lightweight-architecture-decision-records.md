@@ -3,6 +3,7 @@ title: "Lightweight Architecture Decision Records"
 date: 2018-05-24T15:47:59+09:00
 author: Peter Evans
 description: "Lightweight Architecture Decision Records"
+tags: ["lightweight", "architecture", "decision", "records", "software documentation", "markdown"]
 ---
 
 

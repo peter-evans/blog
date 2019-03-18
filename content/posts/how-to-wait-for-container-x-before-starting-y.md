@@ -3,6 +3,7 @@ title: "How to Wait for Container X Before Starting Y"
 date: 2017-03-05T15:08:24+09:00
 author: Peter Evans
 description: "How to wait for container X before starting Y using docker-compose healthcheck"
+tags: ["docker", "docker compose", "container", "healthcheck", "dockerize"]
 ---
 
 Since docker-compose [version 2.1 file format](https://docs.docker.com/compose/compose-file/compose-versioning/#version-21) the [healthcheck](https://docs.docker.com/compose/compose-file/#healthcheck) parameter has been introduced.
