@@ -1,4 +1,5 @@
 <head>
+    {{ partial "structured-data" . }}
     <title>{{ .Site.Title }}{{if not .IsHome}}: {{.Title}}{{end}}</title>
 
     <meta charset="utf-8">
