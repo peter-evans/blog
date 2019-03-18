@@ -3,6 +3,7 @@ title: "Candidate Selection Using Iterative Soft-Thresholding"
 date: 2017-06-21T15:47:07+09:00
 author: Peter Evans
 description: "Candidate Selection Using Iterative Soft-Thresholding"
+tags: ["candidate selection", "iterative", "soft thresholding", "python", "algorithm", "statistics"]
 ---
 
 This article describes one way to use soft-thresholding to select the statistically best candidates from a sorted list. This algorithm was introduced to me as an alternative to setting a hard threshold, i.e. selecting a fixed number of the best candidates. Using an iterative soft-thresholding algorithm a variable number of candidates can be selected depending on the distribution of the values.

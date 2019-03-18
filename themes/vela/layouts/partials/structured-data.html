@@ -1,0 +1,28 @@
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ .Site.BaseURL }}"
+        },
+        "articleSection" : "{{ if .Section }}{{ .Section }}{{ else }}Home{{end}}",
+        "url" : "{{ .Permalink }}",
+        "name" : "{{ .Title }}",
+        "headline" : "{{ .Title }}",
+        "description" : "{{if .IsHome}}{{ $.Site.Params.description }}{{else}}{{.Description}}{{end}}",
+        "inLanguage" : "en-US",
+        "wordCount" : "{{ .WordCount }}",
+        "keywords" : [ {{ if isset .Params "tags" }}{{ range .Params.tags }}"{{ . }}",{{ end }}{{ end }}{{ range .Site.Params.keywords }}"{{ . }}",{{ end }}"blog" ],
+        "thumbnailUrl" : "{{ .Site.BaseURL }}img/og-image.jpg",
+        "image" : "{{ .Site.BaseURL }}img/og-image.jpg",
+        "author" : "{{ .Site.Params.Author }}",
+        "creator" : "{{ .Site.Params.Author }}",
+        "publisher": "{{ .Site.Params.Author }}",
+        "accountablePerson" : "{{ .Site.Params.Author }}",
+        "copyrightHolder" : "{{ .Site.Params.Author }}",
+        "copyrightYear" : "{{ .Date.Format "2006" }}",
+        "dateModified" : "{{ .Date }}",
+        "datePublished": "{{ .Date }}"
+    }
+    </script>

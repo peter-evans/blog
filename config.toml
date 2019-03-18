@@ -2,7 +2,8 @@ baseUrl = "https://peterevans.dev/"
 languageCode = "en-us"
 title = "The blog of Peter Evans"
 theme = "vela"
-disableKinds = ["taxonomy", "taxonomyTerm"]
+[taxonomies]
+    tag = "tags"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 canonifyURLs = true
@@ -10,3 +11,4 @@ canonifyURLs = true
 [params]
     author = "Peter Evans"
     description = "Thoughts and notes on software engineering, architecture and testing."
+    keywords = ["Peter Evans", "software engineering", "software architecture", "software testing"]

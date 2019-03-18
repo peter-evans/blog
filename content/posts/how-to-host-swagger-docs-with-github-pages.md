@@ -3,6 +3,7 @@ title: "How to Host Swagger Documentation With Github Pages"
 date: 2018-05-02T15:23:13+09:00
 author: Peter Evans
 description: "How to host Swagger API documentation with GitHub Pages"
+tags: ["swagger", "swagger ui", "api documentation", "github pages"]
 ---
 
 This article describes how use the [Swagger UI](https://github.com/swagger-api/swagger-ui) to dynamically generate beautiful documentation for your API and host it for free with GitHub Pages.
