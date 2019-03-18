@@ -5,6 +5,7 @@ theme = "vela"
 disableKinds = ["taxonomy", "taxonomyTerm"]
 pygmentsCodeFences = true
 pygmentsUseClasses = true
+canonifyURLs = true
 
 [params]
     author = "Peter Evans"
