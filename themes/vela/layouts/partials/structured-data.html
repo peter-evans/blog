@@ -13,7 +13,7 @@
         "description" : "{{if .IsHome}}{{ $.Site.Params.description }}{{else}}{{.Description}}{{end}}",
         "inLanguage" : "en-US",
         "wordCount" : "{{ .WordCount }}",
-        "keywords" : [ {{ if isset .Params "tags" }}{{ range .Params.tags }}"{{ . }}",{{ end }}{{ end }}{{ range .Site.Params.keywords }}"{{ . }}",{{ end }}"blog" ],
+        "keywords" : [ {{ if isset .Params "keywords" }}{{ range .Params.keywords }}"{{ . }}",{{ end }}{{ end }}{{ range .Site.Params.keywords }}"{{ . }}",{{ end }}"blog" ],
         "thumbnailUrl" : "{{ .Site.BaseURL }}img/og-image.jpg",
         "image" : "{{ .Site.BaseURL }}img/og-image.jpg",
         "author" : "{{ .Site.Params.Author }}",
