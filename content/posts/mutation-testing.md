@@ -3,7 +3,7 @@ title: "Mutation Testing"
 date: 2018-07-31T15:48:26+09:00
 author: Peter Evans
 description: "Mutation Testing – featuring an example using Stryker, a framework for the JavaScript ecosystem"
-tags: ["mutation testing", "code quality", "stryker", "javascript"]
+keywords: ["mutation testing", "code quality", "stryker", "javascript"]
 ---
 
 Mutation testing is a type of testing designed to assess the quality of unit tests.
