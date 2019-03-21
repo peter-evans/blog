@@ -6,6 +6,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 canonifyURLs = true
+rssLimit = 20
 
 [params]
     author = "Peter Evans"
