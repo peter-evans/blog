@@ -89,5 +89,3 @@ That volume is then mounted in the executor container using the `--volumes-from`
 </span><span class="w">      </span>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>container<span class="p">:</span>my-service<span class="w"> </span>--volumes-from<span class="w"> </span>smoke-tests<span class="w"> </span>-t<span class="w"> </span>postman/newman<span class="p">:</span>4.4.0-alpine<span class="w"> </span>run<span class="w"> </span>my-service.postman_collection.json</code></pre></div>
 
 See the code in [this repository](https://github.com/peter-evans/smoke-testing) for a complete example of these techniques.
-
-![I don't always deploy](/img/i-dont-always-deploy.jpg)
