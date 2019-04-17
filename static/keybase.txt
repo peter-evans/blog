@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/peterevans
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://peterevans.dev
+  * I am peterevans (https://keybase.io/peterevans) on keybase.
+  * I have a public key ASAwkJvuyujuRs6WV_fPH1se3qtmmjtoowRZn35AfmGkfAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120986ef0ad06b2013e6cf41a5a7933d9a45ef0ef96547624300b92e4e5c8bf2ecd0a",
+      "host": "keybase.io",
+      "kid": "012030909beecae8ee46ce9657f7cf1f5b1edeab669a3b68a304599f7e407e61a47c0a",
+      "uid": "f0d03cfd308b48aabae67d33daf93719",
+      "username": "peterevans"
+    },
+    "merkle_root": {
+      "ctime": 1555483219,
+      "hash": "4c7c625937b7ecbf2ae384400971ef0ea63345a711d6c5c7e1b64670e43dd01230ea15c0ddf444e910292edda5842871f5b5082b302a94254965692d944f66a7",
+      "hash_meta": "0cbd654b47e974eadb248ffe8967d4d910412a806f8defdddc03fcecd855ec2a",
+      "seqno": 5188790
+    },
+    "service": {
+      "entropy": "ZarxXUSzgNeJ9ahl2of0mH7I",
+      "hostname": "peterevans.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "3.2.2"
+  },
+  "ctime": 1555483271,
+  "expire_in": 504576000,
+  "prev": "3bd72a245b5bd1ebfd717e3f52b4a3272a39e96aebc60cebcca1d61340df4450",
+  "seqno": 10,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgMJCb7sro7kbOllf3zx9bHt6rZpo7aKMEWZ9+QH5hpHwKp3BheWxvYWTESpcCCsQgO9cqJFtb0ev9cX4/UrSjJyo56WrrxgzrzKHWE0DfRFDEIGnsgp9MATa9/UTQ63/KWdy2AShojfz5wjVyRaOaW5bPAgHCo3NpZ8RAOMyjdqiLUv8lsLWoyU3f4JbZ151m8df9cmL+0O9Jlhkcezrb0lnV65zJzzVpmF8grvo2V/0jV3iY7cafOq2uCKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIDf0CQtnvBQnc/hTHkxiXOpP3SRfTzzqEtOZ5FXLRXwuo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/peterevans
+
+==================================================================
