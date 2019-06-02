@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: peterevans.dev
+Token: ea340cb85918d80fef564c49e448c614236df83dcb1c33c53edb6f164346a8e1
