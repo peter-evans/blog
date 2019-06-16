@@ -2,7 +2,7 @@
 title: "Containerising Kotlin with Jib"
 date: 2019-06-16T14:01:23+09:00
 author: Peter Evans
-description: "Containerising Kotlin with Jib"
+description: "Containerising Kotlin with Jib to produce minimal, distroless Docker images"
 keywords: ["kotlin", "kotlin dsl", "gradle", "docker", "containers", "circleci", "jib", "distroless"]
 ---
 
