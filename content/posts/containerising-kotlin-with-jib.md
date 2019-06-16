@@ -50,7 +50,7 @@ jib {
 }
 ```
 
-The `jib` gradle task will build and push to the registry. You might also need to specify an [authentication method](https://github.com/GoogleContainerTools/jib/tree/master/jib-gradle-plugin#authentication-methods). This is the preferred way to build jib images as it is daemonless. There is no requirement for your CI environment to be running the Docker daemon.
+The `jib` gradle task will build and push to the registry. You might also need to specify an [authentication method](https://github.com/GoogleContainerTools/jib/tree/master/jib-gradle-plugin#authentication-methods). This is the preferred way to build Jib images as it is daemonless. There is no requirement for your CI environment to be running the Docker daemon.
 
 ```bash
 gradle jib
