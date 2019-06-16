@@ -31,7 +31,7 @@ The result is that Jib produces lean, efficient and reproducible images that hav
 
 ### Using Jib with Gradle's Kotlin DSL
 
-Here is a quick introduction of how to use Jib with Gradle's Kotlin DSL. A complete example project is contained in this repository.
+Here is a quick introduction of how to use Jib with Gradle's Kotlin DSL. A complete example project is contained in [this repository](https://github.com/peter-evans/kotlin-jib).
 
 First add the plugin to `build.gradle.kts`
 ```kotlin
