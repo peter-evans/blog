@@ -25,6 +25,7 @@ peterevans/webservice      latest       493233af1b87      49 years ago      137M
 ```
 
 The result is that Jib produces lean, efficient and reproducible images that have a number of benefits.
+
 - An accurate diff of changes and provenance between image releases becomes much less of a burden
 - Reduced attack surface
 - Improves the signal to noise ratio of vulnerability scanners
