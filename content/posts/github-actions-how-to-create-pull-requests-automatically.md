@@ -81,7 +81,6 @@ jobs:
       - name: Update dependencies
         id: vars
         run: |
-          cd create-pull-request-multi
           npm install -g npm-check-updates
           ncu -u
           npm install
