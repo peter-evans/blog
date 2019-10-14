@@ -29,7 +29,7 @@ There are many interesting use-cases for this type of action, such as...
 - Static analysis/fixes
 - Scheduled process management
 
-### Example workflow
+### Basic example workflow
 
 Here is simple example that adds a dated report to a repository and raises a pull request.
 
@@ -60,5 +60,91 @@ jobs:
 This is an example of what pull requests created with the action look like on GitHub.
 
 <img src="/img/pull-request-example.png" alt="Pull Request Example" width="700">
+
+### Example workflow to automate periodic dependency updates
+
+This example workflow executes once a week and will create a pull request for any dependency updates.
+
+```
+name: Update Dependencies
+on:
+  schedule:
+    - cron:  '0 10 * * 1'
+jobs:
+  update-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Update dependencies
+        id: vars
+        run: |
+          cd create-pull-request-multi
+          npm install -g npm-check-updates
+          ncu -u
+          npm install
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v1.5.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_MESSAGE: update dependencies
+          COMMIT_AUTHOR_EMAIL: peter-evans@users.noreply.github.com
+          COMMIT_AUTHOR_NAME: Peter Evans
+          PULL_REQUEST_TITLE: Automated Dependency Updates
+          PULL_REQUEST_BODY: This is an auto-generated PR with dependency updates.
+          PULL_REQUEST_LABELS: dep-updates, automated pr
+          PULL_REQUEST_REVIEWERS: peter-evans
+          PULL_REQUEST_BRANCH: dep-updates
+          BRANCH_SUFFIX: none
+```
+
+### Example usage with "on: pull_request" workflows
+
+The following is an example workflow for a use-case where [autopep8 action](https://github.com/peter-evans/autopep8) runs as both a check on pull requests and raises a further pull request to apply code fixes. This is a pattern that would work well for any automated code-linting and fixing.
+
+How it works:
+
+1. When a pull request is raised the workflow executes as a check
+2. If autopep8 makes any fixes a pull request will be raised for those fixes to be merged into the current pull request branch. The workflow then deliberately causes the check to fail.
+3. When the pull request containing the fixes is merged the workflow runs again. This time autopep8 makes no changes and the check passes.
+4. The original pull request can now be merged.
+
+```
+name: autopep8
+on: pull_request
+jobs:
+  autopep8:
+    if: startsWith(github.head_ref, 'autopep8-patches') == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: autopep8
+        id: autopep8
+        uses: peter-evans/autopep8@v1.1.0
+        with:
+          args: --exit-code --recursive --in-place --aggressive --aggressive .
+      - name: Set autopep8 branch name
+        id: vars
+        run: echo ::set-output name=branch-name::"autopep8-patches/$GITHUB_HEAD_REF"
+      - name: Create Pull Request
+        if: steps.autopep8.outputs.exit-code == 2
+        uses: peter-evans/create-pull-request@v1.5.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_MESSAGE: autopep8 action fixes
+          COMMIT_AUTHOR_EMAIL: peter-evans@users.noreply.github.com
+          COMMIT_AUTHOR_NAME: Peter Evans
+          PULL_REQUEST_TITLE: Fixes by autopep8 action
+          PULL_REQUEST_BODY: This is an auto-generated PR with fixes by autopep8.
+          PULL_REQUEST_LABELS: autopep8, automated pr
+          PULL_REQUEST_REVIEWERS: peter-evans
+          PULL_REQUEST_BRANCH: ${{ steps.vars.outputs.branch-name }}
+          BRANCH_SUFFIX: none
+      - name: Fail if autopep8 made changes
+        if: steps.autopep8.outputs.exit-code == 2
+        run: exit 1
+```
 
 See the [create-pull-request](https://github.com/peter-evans/create-pull-request) repository for the latest version and full usage details.
