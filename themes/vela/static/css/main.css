@@ -247,3 +247,13 @@ footer {
 	font-size: 75%;
 	color: #dddddd;
 }
+
+.highlight .pl-ent {
+	color: #438343
+}
+.highlight .pl-s {
+	color: #10305F
+}
+.highlight .pl-c {
+	color: #989898
+}

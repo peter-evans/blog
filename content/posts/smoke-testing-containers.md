@@ -51,18 +51,18 @@ To run our smoke tests, in whatever form they take, we need to package them in a
 Here are two examples using publicly available Docker images to verify our service is running and returning a response from the `/healthcheck` endpoint.
 
 An example using the Docker image [appropriate/curl](https://hub.docker.com/r/appropriate/curl/) to execute a `curl` request.
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">-<span class="w"> </span><span class="m">run</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="m">name</span><span class="p">:</span><span class="w"> </span>Start<span class="w"> </span>the<span class="w"> </span>service<span class="w"> </span>and<span class="w"> </span>perform<span class="w"> </span>healthcheck<span class="w">
-</span><span class="w">    </span><span class="m">command</span><span class="p">:</span><span class="w"> </span>|
-      docker run -d --name my-service my-service<span class="w">
-</span><span class="w">      </span>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>container<span class="p">:</span>my-service<span class="w"> </span>appropriate/curl<span class="w"> </span>--retry<span class="w"> </span>10<span class="w"> </span>--retry-connrefused<span class="w"> </span>http<span class="p">:</span>//localhost<span class="p">:</span>8080/healthcheck</code></pre></div>
+<div class="highlight highlight-source-yaml"><pre>- <span class="pl-ent">run</span>:
+    <span class="pl-ent">name</span>: <span class="pl-s">Start the service and perform healthcheck</span>
+    <span class="pl-ent">command</span>: <span class="pl-s">|</span>
+<span class="pl-s">      docker run -d –name my-service my-service</span>
+<span class="pl-s">      docker run –network container:my-service appropriate/curl –retry 10 –retry-connrefused http://localhost:8080/healthcheck</span></pre></div>
 
 An similar example using the Docker image [jwilder/dockerize](https://hub.docker.com/r/jwilder/dockerize/) to wait for a response from the healthcheck endpoint.
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">-<span class="w"> </span><span class="m">run</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="m">name</span><span class="p">:</span><span class="w"> </span>Start<span class="w"> </span>the<span class="w"> </span>service<span class="w"> </span>and<span class="w"> </span>perform<span class="w"> </span>healthcheck<span class="w">
-</span><span class="w">    </span><span class="m">command</span><span class="p">:</span><span class="w"> </span>|
-      docker run -d --name my-service my-service<span class="w">
-</span><span class="w">      </span>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>container<span class="p">:</span>my-service<span class="w"> </span>jwilder/dockerize<span class="w"> </span>-wait<span class="w"> </span>http<span class="p">:</span>//localhost<span class="p">:</span>8080/healthcheck<span class="w"> </span>-timeout<span class="w"> </span>120s<span class="w"> </span>-wait-retry-interval<span class="w"> </span>5s</code></pre></div>
+<div class="highlight highlight-source-yaml"><pre>- <span class="pl-ent">run</span>:
+    <span class="pl-ent">name</span>: <span class="pl-s">Start the service and perform healthcheck</span>
+    <span class="pl-ent">command</span>: <span class="pl-s">|</span>
+<span class="pl-s">      docker run -d –name my-service my-service</span>
+<span class="pl-s">      docker run –network container:my-service jwilder/dockerize -wait http://localhost:8080/healthcheck -timeout 120s -wait-retry-interval 5s</span></pre></div>
 
 #### Custom smoke tests
 
@@ -75,17 +75,17 @@ Note that in order to make our test files (in this case a JSON Postman collectio
 This container defines a volume at the path we want our test files to be accessible in the executor container.
 That volume is then mounted in the executor container using the `--volumes-from` flag to make the test files available at runtime.
 
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">-<span class="w"> </span><span class="m">run</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="m">name</span><span class="p">:</span><span class="w"> </span>Execute<span class="w"> </span>smoke<span class="w"> </span>tests<span class="w">
-</span><span class="w">    </span><span class="m">command</span><span class="p">:</span><span class="w"> </span>|
-      docker run -d --name my-service my-service<span class="w">
-</span><span class="w">      </span><span class="c"># Create a container called &#34;smoke-tests&#34; to store our smoke test files</span><span class="w">
-</span><span class="w">      </span>docker<span class="w"> </span>create<span class="w"> </span>-v<span class="w"> </span>/etc/newman<span class="w"> </span>--name<span class="w"> </span>smoke-tests<span class="w"> </span>alpine<span class="p">:</span>3.4<span class="w"> </span>/bin/true<span class="w">
-</span><span class="w">      </span><span class="c"># Copy test files from local directory &#39;smoke-tests&#39; to the container</span><span class="w">
-</span><span class="w">      </span>docker<span class="w"> </span>cp<span class="w"> </span>smoke-tests/.<span class="w"> </span>smoke-tests<span class="p">:</span>/etc/newman<span class="w">
-</span><span class="w">      </span><span class="c"># Wait for service to be up and running</span><span class="w">
-</span><span class="w">      </span>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>container<span class="p">:</span>my-service<span class="w"> </span>jwilder/dockerize<span class="w"> </span>-wait<span class="w"> </span>http<span class="p">:</span>//localhost<span class="p">:</span>8080/healthcheck<span class="w"> </span>-timeout<span class="w"> </span>120s<span class="w"> </span>-wait-retry-interval<span class="w"> </span>5s<span class="w">
-</span><span class="w">      </span><span class="c"># Run smoke tests</span><span class="w">
-</span><span class="w">      </span>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>container<span class="p">:</span>my-service<span class="w"> </span>--volumes-from<span class="w"> </span>smoke-tests<span class="w"> </span>-t<span class="w"> </span>postman/newman<span class="p">:</span>4.4.0-alpine<span class="w"> </span>run<span class="w"> </span>my-service.postman_collection.json</code></pre></div>
+<div class="highlight highlight-source-yaml"><pre>- <span class="pl-ent">run</span>:
+    <span class="pl-ent">name</span>: <span class="pl-s">Execute smoke tests</span>
+    <span class="pl-ent">command</span>: <span class="pl-s">|</span>
+<span class="pl-s">      docker run -d --name my-service my-service</span>
+<span class="pl-c">      # Create a container called "smoke-tests" to store our smoke test files</span>
+<span class="pl-s">      docker create -v /etc/newman --name smoke-tests alpine:3.4 /bin/true</span>
+<span class="pl-c">      # Copy test files from local directory 'smoke-tests' to the container</span>
+<span class="pl-s">      docker cp smoke-tests/. smoke-tests:/etc/newman</span>
+<span class="pl-c">      # Wait for service to be up and running</span>
+<span class="pl-s">      docker run --network container:my-service jwilder/dockerize -wait http://localhost:8080/healthcheck -timeout 120s -wait-retry-interval 5s</span>
+<span class="pl-c">      # Run smoke tests</span>
+<span class="pl-s">      docker run --network container:my-service --volumes-from smoke-tests -t postman/newman:4.4.0-alpine run my-service.postman_collection.json</span></pre></div>
 
 See the code in [this repository](https://github.com/peter-evans/smoke-testing) for a complete example of these techniques.

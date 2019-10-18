@@ -25,113 +25,105 @@ How it works:
 4. If modified files exist they are committed and pushed to the remote.
 5. When using a `repo` scoped [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) instead of `GITHUB_TOKEN`, the `push` triggers all pull request checks to run again.
 
-```
-name: auto-format
-on: pull_request
-jobs:
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: autopep8
-        uses: peter-evans/autopep8@v1.1.0
-        with:
-          args: --exit-code --recursive --in-place --aggressive --aggressive .
-      - name: Check for modified files
-        id: git-check
-        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
-      - name: Push changes
-        if: steps.git-check.outputs.modified == 'true'
-        run: |
-          git config --global user.name 'Peter Evans'
-          git config --global user.email 'peter-evans@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout $GITHUB_HEAD_REF
-          git commit -am "Automated changes"
-          git push
-```
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">name</span>: <span class="pl-s">auto-format</span>
+<span class="pl-ent">on</span>: <span class="pl-s">pull_request</span>
+<span class="pl-ent">jobs</span>:
+  <span class="pl-ent">format</span>:
+    <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
+    <span class="pl-ent">steps</span>:
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">autopep8</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/autopep8@v1.1.0</span>
+        <span class="pl-ent">with</span>:
+          <span class="pl-ent">args</span>: <span class="pl-s">--exit-code --recursive --in-place --aggressive --aggressive .</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
+        <span class="pl-ent">id</span>: <span class="pl-s">git-check</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">Push changes</span>
+        <span class="pl-ent">if</span>: <span class="pl-s">steps.git-check.outputs.modified == 'true'</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">|</span>
+<span class="pl-s">          git config --global user.name 'Peter Evans'</span>
+<span class="pl-s">          git config --global user.email 'peter-evans@users.noreply.github.com'</span>
+<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY</span>
+<span class="pl-s">          git checkout $GITHUB_HEAD_REF</span>
+<span class="pl-s">          git commit -am "Automated changes"</span>
+<span class="pl-s">          git push</span></pre></div>
 
 ### Further examples
 
 Automated Python code formatting with [Black](https://github.com/psf/black) via [Black-action](https://github.com/lgeiger/black-action).
 
-```
-name: auto-format
-on: pull_request
-jobs:
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: black
-        uses: lgeiger/black-action@v1.0.1
-        with:
-          args: .
-      - name: Check for modified files
-        id: git-check
-        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
-      - name: Push changes
-        if: steps.git-check.outputs.modified == 'true'
-        run: |
-          git config --global user.name 'Peter Evans'
-          git config --global user.email 'peter-evans@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout $GITHUB_HEAD_REF
-          git commit -am "Automated changes"
-          git push
-```
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">name</span>: <span class="pl-s">auto-format</span>
+<span class="pl-ent">on</span>: <span class="pl-s">pull_request</span>
+<span class="pl-ent">jobs</span>:
+  <span class="pl-ent">format</span>:
+    <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
+    <span class="pl-ent">steps</span>:
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">black</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">lgeiger/black-action@v1.0.1</span>
+        <span class="pl-ent">with</span>:
+          <span class="pl-ent">args</span>: <span class="pl-s">.</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
+        <span class="pl-ent">id</span>: <span class="pl-s">git-check</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">Push changes</span>
+        <span class="pl-ent">if</span>: <span class="pl-s">steps.git-check.outputs.modified == 'true'</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">|</span>
+<span class="pl-s">          git config --global user.name 'Peter Evans'</span>
+<span class="pl-s">          git config --global user.email 'peter-evans@users.noreply.github.com'</span>
+<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY</span>
+<span class="pl-s">          git checkout $GITHUB_HEAD_REF</span>
+<span class="pl-s">          git commit -am "Automated changes"</span>
+<span class="pl-s">          git push</span></pre></div>
 
 Automated Javascript code formatting with [Prettier](https://prettier.io/).
 
-```
-name: auto-format
-on: pull_request
-jobs:
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: prettier
-        run: npx prettier --write src/**/*.js
-      - name: Check for modified files
-        id: git-check
-        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
-      - name: Push changes
-        if: steps.git-check.outputs.modified == 'true'
-        run: |
-          git config --global user.name 'Peter Evans'
-          git config --global user.email 'peter-evans@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout $GITHUB_HEAD_REF
-          git commit -am "Automated changes"
-          git push
-```
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">name</span>: <span class="pl-s">auto-format</span>
+<span class="pl-ent">on</span>: <span class="pl-s">pull_request</span>
+<span class="pl-ent">jobs</span>:
+  <span class="pl-ent">format</span>:
+    <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
+    <span class="pl-ent">steps</span>:
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">prettier</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">npx prettier --write src/**/*.js</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
+        <span class="pl-ent">id</span>: <span class="pl-s">git-check</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">Push changes</span>
+        <span class="pl-ent">if</span>: <span class="pl-s">steps.git-check.outputs.modified == 'true'</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">|</span>
+<span class="pl-s">          git config --global user.name 'Peter Evans'</span>
+<span class="pl-s">          git config --global user.email 'peter-evans@users.noreply.github.com'</span>
+<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY</span>
+<span class="pl-s">          git checkout $GITHUB_HEAD_REF</span>
+<span class="pl-s">          git commit -am "Automated changes"</span>
+<span class="pl-s">          git push</span></pre></div>
 
 Automated Go code formatting with [gofmt](https://golang.org/cmd/gofmt/).
 
-```
-name: auto-format
-on: pull_request
-jobs:
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: gofmt
-        run: gofmt -s -w .
-      - name: Check for modified files
-        id: git-check
-        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
-      - name: Push changes
-        if: steps.git-check.outputs.modified == 'true'
-        run: |
-          git config --global user.name 'Peter Evans'
-          git config --global user.email 'peter-evans@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout $GITHUB_HEAD_REF
-          git commit -am "Automated changes"
-          git push
-```
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">name</span>: <span class="pl-s">auto-format</span>
+<span class="pl-ent">on</span>: <span class="pl-s">pull_request</span>
+<span class="pl-ent">jobs</span>:
+  <span class="pl-ent">format</span>:
+    <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
+    <span class="pl-ent">steps</span>:
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">gofmt</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">gofmt -s -w .</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
+        <span class="pl-ent">id</span>: <span class="pl-s">git-check</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)</span>
+      - <span class="pl-ent">name</span>: <span class="pl-s">Push changes</span>
+        <span class="pl-ent">if</span>: <span class="pl-s">steps.git-check.outputs.modified == 'true'</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">|</span>
+<span class="pl-s">          git config --global user.name 'Peter Evans'</span>
+<span class="pl-s">          git config --global user.email 'peter-evans@users.noreply.github.com'</span>
+<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY</span>
+<span class="pl-s">          git checkout $GITHUB_HEAD_REF</span>
+<span class="pl-s">          git commit -am "Automated changes"</span>
+<span class="pl-s">          git push</span></pre></div>
 
 See the following repositories for further details and examples involving automation of pull request workflows.
 
