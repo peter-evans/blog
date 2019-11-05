@@ -12,7 +12,9 @@ Many programming languages have auto-formatting tools. The most common way to us
 
 With a lot of trial and error, I discovered this is possible using an `on: pull_request` workflow in GitHub Actions. The following example uses the [autopep8](https://github.com/peter-evans/autopep8) action to format Python code.
 
-**Important caveat:** If you have other pull request checks besides the following workflow then you must use a [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) instead of the default `GITHUB_TOKEN`.
+**Important caveat 1:** Due to [limitations on forked repositories](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#token-permissions) these workflows do not work for pull requests raised from forks.
+
+**Important caveat 2:** If you have other pull request checks besides the following workflow then you must use a [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) instead of the default `GITHUB_TOKEN`.
 This is due to a deliberate limitation imposed by GitHub Actions that events raised by a workflow (such as `push`) cannot trigger further workflow runs.
 This is to prevent accidental "infinite loop" situations, and as an anti-abuse measure.
 Using a `repo` scoped [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) is an approved workaround. See [this GitHub issue](https://github.com/peter-evans/create-pull-request/issues/48) for further detail.
@@ -29,6 +31,8 @@ How it works:
 <span class="pl-ent">on</span>: <span class="pl-s">pull_request</span>
 <span class="pl-ent">jobs</span>:
   <span class="pl-ent">format</span>:
+    <span class="pl-c"><span class="pl-c">#</span> Check if the PR is not from a fork</span>
+    <span class="pl-ent">if</span>: <span class="pl-s">github.event.pull_request.head.repo.full_name == github.repository</span>
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
       - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
@@ -57,6 +61,8 @@ Automated Python code formatting with [Black](https://github.com/psf/black) via 
 <span class="pl-ent">on</span>: <span class="pl-s">pull_request</span>
 <span class="pl-ent">jobs</span>:
   <span class="pl-ent">format</span>:
+    <span class="pl-c"><span class="pl-c">#</span> Check if the PR is not from a fork</span>
+    <span class="pl-ent">if</span>: <span class="pl-s">github.event.pull_request.head.repo.full_name == github.repository</span>
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
       - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
@@ -83,6 +89,8 @@ Automated Javascript code formatting with [Prettier](https://prettier.io/).
 <span class="pl-ent">on</span>: <span class="pl-s">pull_request</span>
 <span class="pl-ent">jobs</span>:
   <span class="pl-ent">format</span>:
+    <span class="pl-c"><span class="pl-c">#</span> Check if the PR is not from a fork</span>
+    <span class="pl-ent">if</span>: <span class="pl-s">github.event.pull_request.head.repo.full_name == github.repository</span>
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
       - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
@@ -107,6 +115,8 @@ Automated Go code formatting with [gofmt](https://golang.org/cmd/gofmt/).
 <span class="pl-ent">on</span>: <span class="pl-s">pull_request</span>
 <span class="pl-ent">jobs</span>:
   <span class="pl-ent">format</span>:
+    <span class="pl-c"><span class="pl-c">#</span> Check if the PR is not from a fork</span>
+    <span class="pl-ent">if</span>: <span class="pl-s">github.event.pull_request.head.repo.full_name == github.repository</span>
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
       - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
