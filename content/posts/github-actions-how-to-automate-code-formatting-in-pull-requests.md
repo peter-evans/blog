@@ -12,7 +12,7 @@ Many programming languages have auto-formatting tools. The most common way to us
 
 With a lot of trial and error, I discovered this is possible using an `on: pull_request` workflow in GitHub Actions. The following example uses the [autopep8](https://github.com/peter-evans/autopep8) action to format Python code.
 
-**Important caveat 1:** Due to [limitations on forked repositories](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#token-permissions) these workflows do not work for pull requests raised from forks.
+**Important caveat 1:** Due to [limitations on forked repositories](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#permissions-for-the-github_token) these workflows do not work for pull requests raised from forks.
 
 **Important caveat 2:** If you have other pull request checks besides the following workflow then you must use a [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) instead of the default `GITHUB_TOKEN`.
 This is due to a deliberate limitation imposed by GitHub Actions that events raised by a workflow (such as `push`) cannot trigger further workflow runs.

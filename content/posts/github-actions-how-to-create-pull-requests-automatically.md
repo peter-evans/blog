@@ -106,7 +106,7 @@ How it works:
 3. When the pull request containing the fixes is merged the workflow runs again. This time autopep8 makes no changes and the check passes.
 4. The original pull request can now be merged.
 
-Note that due to [limitations on forked repositories](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#token-permissions) this workflow does not work for pull requests raised from forks.
+Note that due to [limitations on forked repositories](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#permissions-for-the-github_token) this workflow does not work for pull requests raised from forks.
 
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">name</span>: <span class="pl-s">autopep8</span>
 <span class="pl-ent">on</span>: <span class="pl-s">pull_request</span>
