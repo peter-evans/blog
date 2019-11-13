@@ -45,7 +45,7 @@ Here is simple example that adds a dated report to a repository and raises a pul
       - <span class="pl-ent">name</span>: <span class="pl-s">Create report file</span>
         <span class="pl-ent">run</span>: <span class="pl-s">date +%s &gt; report.txt</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v1.7.2</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v1</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.GITHUB_TOKEN }}</span>
           <span class="pl-ent">commit-message</span>: <span class="pl-s">Add report file</span>
@@ -82,7 +82,7 @@ This example workflow executes once a week and will create a pull request for an
 <span class="pl-s">          ncu -u</span>
 <span class="pl-s">          npm install</span>
 <span class="pl-s"></span>      - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v1.7.2</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v1</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.GITHUB_TOKEN }}</span>
           <span class="pl-ent">commit-message</span>: <span class="pl-s">update dependencies</span>
@@ -127,7 +127,7 @@ Note that due to [limitations on forked repositories](https://help.github.com/en
         <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=branch-name::"autopep8-patches/$GITHUB_HEAD_REF"</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
         <span class="pl-ent">if</span>: <span class="pl-s">steps.autopep8.outputs.exit-code == 2</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v1.7.2</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v1</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.GITHUB_TOKEN }}</span>
           <span class="pl-ent">commit-message</span>: <span class="pl-s">autopep8 action fixes</span>
