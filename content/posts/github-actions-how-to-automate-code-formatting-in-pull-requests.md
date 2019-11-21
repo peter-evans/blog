@@ -36,6 +36,8 @@ How it works:
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
       - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+        <span class="pl-ent">with</span>:
+          <span class="pl-ent">ref</span>: <span class="pl-s">${{ github.head_ref }}</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">autopep8</span>
         <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/autopep8@v1.1.0</span>
         <span class="pl-ent">with</span>:
@@ -48,8 +50,7 @@ How it works:
         <span class="pl-ent">run</span>: <span class="pl-s">|</span>
 <span class="pl-s">          git config --global user.name 'Peter Evans'</span>
 <span class="pl-s">          git config --global user.email 'peter-evans@users.noreply.github.com'</span>
-<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY</span>
-<span class="pl-s">          git checkout $GITHUB_HEAD_REF</span>
+<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}</span>
 <span class="pl-s">          git commit -am "Automated changes"</span>
 <span class="pl-s">          git push</span></pre></div>
 
@@ -66,6 +67,8 @@ Automated Python code formatting with [Black](https://github.com/psf/black) via 
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
       - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+        <span class="pl-ent">with</span>:
+          <span class="pl-ent">ref</span>: <span class="pl-s">${{ github.head_ref }}</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">black</span>
         <span class="pl-ent">uses</span>: <span class="pl-s">lgeiger/black-action@v1.0.1</span>
         <span class="pl-ent">with</span>:
@@ -78,8 +81,7 @@ Automated Python code formatting with [Black](https://github.com/psf/black) via 
         <span class="pl-ent">run</span>: <span class="pl-s">|</span>
 <span class="pl-s">          git config --global user.name 'Peter Evans'</span>
 <span class="pl-s">          git config --global user.email 'peter-evans@users.noreply.github.com'</span>
-<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY</span>
-<span class="pl-s">          git checkout $GITHUB_HEAD_REF</span>
+<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}</span>
 <span class="pl-s">          git commit -am "Automated changes"</span>
 <span class="pl-s">          git push</span></pre></div>
 
@@ -94,6 +96,8 @@ Automated Javascript code formatting with [Prettier](https://prettier.io/).
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
       - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+        <span class="pl-ent">with</span>:
+          <span class="pl-ent">ref</span>: <span class="pl-s">${{ github.head_ref }}</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">prettier</span>
         <span class="pl-ent">run</span>: <span class="pl-s">npx prettier --write src/**/*.js</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
@@ -104,8 +108,7 @@ Automated Javascript code formatting with [Prettier](https://prettier.io/).
         <span class="pl-ent">run</span>: <span class="pl-s">|</span>
 <span class="pl-s">          git config --global user.name 'Peter Evans'</span>
 <span class="pl-s">          git config --global user.email 'peter-evans@users.noreply.github.com'</span>
-<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY</span>
-<span class="pl-s">          git checkout $GITHUB_HEAD_REF</span>
+<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}</span>
 <span class="pl-s">          git commit -am "Automated changes"</span>
 <span class="pl-s">          git push</span></pre></div>
 
@@ -120,6 +123,8 @@ Automated Go code formatting with [gofmt](https://golang.org/cmd/gofmt/).
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
       - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+        <span class="pl-ent">with</span>:
+          <span class="pl-ent">ref</span>: <span class="pl-s">${{ github.head_ref }}</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">gofmt</span>
         <span class="pl-ent">run</span>: <span class="pl-s">gofmt -s -w .</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
@@ -130,8 +135,7 @@ Automated Go code formatting with [gofmt](https://golang.org/cmd/gofmt/).
         <span class="pl-ent">run</span>: <span class="pl-s">|</span>
 <span class="pl-s">          git config --global user.name 'Peter Evans'</span>
 <span class="pl-s">          git config --global user.email 'peter-evans@users.noreply.github.com'</span>
-<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY</span>
-<span class="pl-s">          git checkout $GITHUB_HEAD_REF</span>
+<span class="pl-s">          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}</span>
 <span class="pl-s">          git commit -am "Automated changes"</span>
 <span class="pl-s">          git push</span></pre></div>
 
