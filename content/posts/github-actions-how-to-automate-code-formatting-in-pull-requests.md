@@ -6,6 +6,8 @@ description: "How to automatically format code and push it to the pull request b
 keywords: ["github", "github actions", "pull request", "automation", "code formatting", "autopep8", "black", "prettier", "gofmt"]
 ---
 
+**Update**: While the approach outlined in this post does work, my current recommendation would be to use a slash command style "ChatOps" solution for operations on pull requests. See [slash-command-dispatch](https://github.com/peter-evans/slash-command-dispatch) for such a solution.
+
 Many programming languages have auto-formatting tools. The most common way to use these is client-side, either using git-hooks to format on `pre-commit`, or text editor plugins that format on save. Since they run client-side they all rely on engineers setting these tools up correctly. Failing to format before raising pull requests often means that checks will fail and corrections will need to be made. Wouldn't it be great to have automated code formatting of pull request branches.
 
 ### Automated code formatting of pull request branches

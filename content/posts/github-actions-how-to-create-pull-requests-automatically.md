@@ -16,11 +16,14 @@ The local changes will be automatically committed to a new branch and a pull req
 
 Create Pull Request action will:
 
-1. Check for repository changes in the Actions workspace. This includes untracked (new) files as well as modified files.
+1. Check for repository changes in the Actions workspace. This includes:
+   - untracked (new) files
+   - tracked (modified) files
+   - commits made during the workflow that have not been pushed
 2. Commit all changes to a new branch, or update an existing pull request branch.
-3. Create a pull request to merge the new branch into the currently active branch executing the workflow.
+3. Create a pull request to merge the new branch into the base&mdash;the branch checked out in the workflow.
 
-There are many interesting use-cases for this type of action, such as...
+There are many interesting use cases for this type of action, such as...
 
 - Process management bots
 - Synchronization with external data sources
@@ -41,11 +44,11 @@ Here is simple example that adds a dated report to a repository and raises a pul
   <span class="pl-ent">createPullRequest</span>:
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
-      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v2</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Create report file</span>
         <span class="pl-ent">run</span>: <span class="pl-s">date +%s &gt; report.txt</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v1</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v2</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.GITHUB_TOKEN }}</span>
           <span class="pl-ent">commit-message</span>: <span class="pl-s">Add report file</span>
@@ -71,7 +74,7 @@ This example workflow executes once a week and will create a pull request for an
   <span class="pl-ent">update-deps</span>:
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
-      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v2</span>
       - <span class="pl-ent">uses</span>: <span class="pl-s">actions/setup-node@v1</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">node-version</span>: <span class="pl-s"><span class="pl-pds">'</span>10.x<span class="pl-pds">'</span></span>
@@ -82,22 +85,22 @@ This example workflow executes once a week and will create a pull request for an
 <span class="pl-s">          ncu -u</span>
 <span class="pl-s">          npm install</span>
 <span class="pl-s"></span>      - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v1</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v2</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.GITHUB_TOKEN }}</span>
           <span class="pl-ent">commit-message</span>: <span class="pl-s">update dependencies</span>
-          <span class="pl-ent">author-email</span>: <span class="pl-s">peter-evans@users.noreply.github.com</span>
-          <span class="pl-ent">author-name</span>: <span class="pl-s">Peter Evans</span>
+          <span class="pl-ent">committer</span>: <span class="pl-s">Peter Evans &lt;peter-evans@users.noreply.github.com&gt;</span>
           <span class="pl-ent">title</span>: <span class="pl-s">Automated Dependency Updates</span>
           <span class="pl-ent">body</span>: <span class="pl-s">This is an auto-generated PR with dependency updates.</span>
           <span class="pl-ent">labels</span>: <span class="pl-s">dep-updates, automated pr</span>
           <span class="pl-ent">reviewers</span>: <span class="pl-s">peter-evans</span>
-          <span class="pl-ent">branch</span>: <span class="pl-s">dep-updates</span>
-          <span class="pl-ent">branch-suffix</span>: <span class="pl-s">none</span></pre></div>
+          <span class="pl-ent">branch</span>: <span class="pl-s">dep-updates</span></pre></div>
 
 ### Example usage with "on: pull_request" workflows
 
-The following is an example workflow for a use-case where [autopep8 action](https://github.com/peter-evans/autopep8) runs as both a check on pull requests and raises a further pull request to apply code fixes. This is a pattern that would work well for any automated code linting and fixing.
+**Update**: While the following approach does work, my strong recommendation would be to use a slash command style "ChatOps" solution for operations on pull requests. See [slash-command-dispatch](https://github.com/peter-evans/slash-command-dispatch) for such a solution.
+
+The following is an example workflow for a use case where [autopep8 action](https://github.com/peter-evans/autopep8) runs as both a check on pull requests and raises a further pull request to apply code fixes. This is a pattern that lends itself to automated code linting and fixing.
 
 How it works:
 
@@ -116,7 +119,7 @@ Note that due to [limitations on forked repositories](https://help.github.com/en
     <span class="pl-ent">if</span>: <span class="pl-s">startsWith(github.head_ref, 'autopep8-patches') == false && github.event.pull_request.head.repo.full_name == github.repository</span>
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
-      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v1</span>
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v2</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">autopep8</span>
         <span class="pl-ent">id</span>: <span class="pl-s">autopep8</span>
         <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/autopep8@v1.1.0</span>
@@ -124,21 +127,18 @@ Note that due to [limitations on forked repositories](https://help.github.com/en
           <span class="pl-ent">args</span>: <span class="pl-s">--exit-code --recursive --in-place --aggressive --aggressive .</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Set autopep8 branch name</span>
         <span class="pl-ent">id</span>: <span class="pl-s">vars</span>
-        <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=branch-name::"autopep8-patches/$GITHUB_HEAD_REF"</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=branch-name::"autopep8-patches/${{ github.head_ref }}"</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
         <span class="pl-ent">if</span>: <span class="pl-s">steps.autopep8.outputs.exit-code == 2</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v1</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v2</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.GITHUB_TOKEN }}</span>
           <span class="pl-ent">commit-message</span>: <span class="pl-s">autopep8 action fixes</span>
-          <span class="pl-ent">author-email</span>: <span class="pl-s">peter-evans@users.noreply.github.com</span>
-          <span class="pl-ent">author-name</span>: <span class="pl-s">Peter Evans</span>
           <span class="pl-ent">title</span>: <span class="pl-s">Fixes by autopep8 action</span>
           <span class="pl-ent">body</span>: <span class="pl-s">This is an auto-generated PR with fixes by autopep8.</span>
           <span class="pl-ent">labels</span>: <span class="pl-s">autopep8, automated pr</span>
           <span class="pl-ent">reviewers</span>: <span class="pl-s">peter-evans</span>
           <span class="pl-ent">branch</span>: <span class="pl-s">${{ steps.vars.outputs.branch-name }}</span>
-          <span class="pl-ent">branch-suffix</span>: <span class="pl-s">none</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Fail if autopep8 made changes</span>
         <span class="pl-ent">if</span>: <span class="pl-s">steps.autopep8.outputs.exit-code == 2</span>
         <span class="pl-ent">run</span>: <span class="pl-s">exit 1</span></pre></div>
