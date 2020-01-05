@@ -2,7 +2,7 @@
 title: "ChatOps for GitHub Actions"
 date: 2020-01-05T16:30:12+09:00
 author: Peter Evans
-description: "How to do slash command style ChatOps with GitHub Actions"
+description: "Slash command style ChatOps for GitHub Actions"
 keywords: ["github", "github actions", "chatops", "slash command", "pull requests", "issues", "issue comment", "slash-command-dispatch"]
 ---
 
