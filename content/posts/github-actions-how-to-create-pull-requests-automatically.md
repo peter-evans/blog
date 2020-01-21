@@ -122,7 +122,7 @@ Note that due to [limitations on forked repositories](https://help.github.com/en
       - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v2</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">autopep8</span>
         <span class="pl-ent">id</span>: <span class="pl-s">autopep8</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/autopep8@v1.1.0</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/autopep8@v1</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">args</span>: <span class="pl-s">--exit-code --recursive --in-place --aggressive --aggressive .</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Set autopep8 branch name</span>

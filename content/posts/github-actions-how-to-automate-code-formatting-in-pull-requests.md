@@ -41,7 +41,7 @@ How it works:
         <span class="pl-ent">with</span>:
           <span class="pl-ent">ref</span>: <span class="pl-s">${{ github.head_ref }}</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">autopep8</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/autopep8@v1.1.0</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/autopep8@v1</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">args</span>: <span class="pl-s">--exit-code --recursive --in-place --aggressive --aggressive .</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
