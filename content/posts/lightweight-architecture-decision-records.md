@@ -72,4 +72,4 @@ Here is an example template.
 ### Real-world example
 
 This is a real-world example of using Lightweight Architecture Decision Records by [GOV.UK](https://www.gov.uk/) for their migration to AWS.
-https://github.com/alphagov/govuk-aws/tree/master/doc/architecture/decisions
+https://github.com/alphagov/govuk-aws/tree/master/docs/architecture/decisions
