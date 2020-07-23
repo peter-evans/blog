@@ -89,7 +89,7 @@ This will verify that the dependency versions in the new lockfile will build and
       - <span class="pl-ent">name</span>: <span class="pl-s">Perform dependency resolution and write new lockfiles</span>
         <span class="pl-ent">run</span>: <span class="pl-s">./gradlew dependencies --write-locks</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v2</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v3</span>
         <span class="pl-ent">with</span>:
             <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.PAT }}</span>
             <span class="pl-ent">commit-message</span>: <span class="pl-s">Update dependencies</span>

@@ -48,7 +48,7 @@ Here is simple example that adds a dated report to a repository and raises a pul
       - <span class="pl-ent">name</span>: <span class="pl-s">Create report file</span>
         <span class="pl-ent">run</span>: <span class="pl-s">date +%s &gt; report.txt</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v2</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v3</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.GITHUB_TOKEN }}</span>
           <span class="pl-ent">commit-message</span>: <span class="pl-s">Add report file</span>
@@ -86,7 +86,7 @@ A [Personal Access Token (PAT)](https://help.github.com/en/github/authenticating
 <span class="pl-s">          npx -p npm-check-updates ncu -u</span>
 <span class="pl-s">          npm install</span>
 <span class="pl-s"></span>      - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v2</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v3</span>
         <span class="pl-ent">with</span>:
             <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.PAT }}</span>
             <span class="pl-ent">commit-message</span>: <span class="pl-s">Update dependencies</span>
