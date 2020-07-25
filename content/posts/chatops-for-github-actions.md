@@ -87,7 +87,7 @@ Command processing setup is complete! Now we need to setup command dispatch for 
         <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
         <span class="pl-ent">steps</span>:
           - <span class="pl-ent">name</span>: <span class="pl-s">Slash Command Dispatch</span>
-            <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/slash-command-dispatch@v1</span>
+            <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/slash-command-dispatch@v2</span>
             <span class="pl-ent">with</span>:
               <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.REPO_ACCESS_TOKEN }}</span>
               <span class="pl-ent">commands</span>: <span class="pl-s">example</span>
