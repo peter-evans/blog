@@ -67,7 +67,7 @@ This is an example of what pull requests created with the action look like on Gi
 This pattern will work well for updating any kind of static content from an external source.
 The following example workflow executes once a week and will create a pull request for any new npm dependency updates. 
 It works best in combination with a build workflow triggered on `push` and `pull_request`.
-A [Personal Access Token (PAT)](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) can be used in order for the creation of the pull request to trigger further workflows. See the [documentation here](https://github.com/peter-evans/create-pull-request/blob/master/docs/concepts-guidelines.md#triggering-further-workflow-runs) for further details.
+A [Personal Access Token (PAT)](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) can be used in order for the creation of the pull request to trigger further workflows. See the [documentation here](https://github.com/peter-evans/create-pull-request/blob/master/docs/concepts-guidelines.md#triggering-further-workflow-runs) for further details.
 
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">name</span>: <span class="pl-s">Update Dependencies</span>
 <span class="pl-ent">on</span>:

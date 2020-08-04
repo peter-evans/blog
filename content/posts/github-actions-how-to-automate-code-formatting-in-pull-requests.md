@@ -14,12 +14,13 @@ Many programming languages have auto-formatting tools. The most common way to us
 
 With a lot of trial and error, I discovered this is possible using an `on: pull_request` workflow in GitHub Actions. The following example uses the [autopep8](https://github.com/peter-evans/autopep8) action to format Python code.
 
-**Important caveat 1:** Due to [limitations on forked repositories](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#permissions-for-the-github_token) these workflows do not work for pull requests raised from forks.
+**Important caveat 1:** Due to [token restrictions on public repository forks](https://docs.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token#permissions-for-the-github_token) these workflows do not work for pull requests raised from forks.
+Private repositories can be configured to [enable workflows](https://docs.github.com/en/github/administering-a-repository/disabling-or-limiting-github-actions-for-a-repository#enabling-workflows-for-private-repository-forks) from forks to run without restriction.
 
-**Important caveat 2:** If you have other pull request checks besides the following workflow then you must use a [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) instead of the default `GITHUB_TOKEN`.
+**Important caveat 2:** If you have other pull request checks besides the following workflow then you must use a [Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) instead of the default `GITHUB_TOKEN`.
 This is due to a deliberate limitation imposed by GitHub Actions that events raised by a workflow (such as `push`) cannot trigger further workflow runs.
 This is to prevent accidental "infinite loop" situations, and as an anti-abuse measure.
-Using a `repo` scoped [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) is an approved workaround. See [this GitHub issue](https://github.com/peter-evans/create-pull-request/issues/48) for further detail.
+Using a `repo` scoped [Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) is an approved workaround. See [here](https://github.com/peter-evans/create-pull-request/blob/master/docs/concepts-guidelines.md#triggering-further-workflow-runs) for further detail.
 
 How it works:
 
@@ -27,7 +28,7 @@ How it works:
 2. The code formatter executes and modifies files if necessary.
 3. The workflow checks to see if any tracked files by git have been modified.
 4. If modified files exist they are committed and pushed to the remote.
-5. When using a `repo` scoped [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) instead of `GITHUB_TOKEN`, the `push` triggers all pull request checks to run again.
+5. When using a `repo` scoped [Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) instead of `GITHUB_TOKEN`, the `push` triggers all pull request checks to run again.
 
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">name</span>: <span class="pl-s">auto-format</span>
 <span class="pl-ent">on</span>: <span class="pl-s">pull_request</span>

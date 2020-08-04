@@ -12,9 +12,9 @@ While GitHub Actions has many ways to trigger workflows based on events that occ
 
 ### Manually triggering workflows
 
-You *can* trigger workflows manually by configuring them to listen for the [`repository_dispatch`](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#external-events-repository_dispatch) event, and then sending a call to the GitHub API. I found myself using this method a lot to test actions I was developing. The main problem with this was the awkwardness of calling the API using curl.
+You *can* trigger workflows manually by configuring them to listen for the [`repository_dispatch`](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#repository_dispatch) event, and then sending a call to the GitHub API. I found myself using this method a lot to test actions I was developing. The main problem with this was the awkwardness of calling the API using curl.
 
-Another way to trigger workflows is to configure a workflow on the [`issue_comment`](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#issue-comment-event-issue_comment) event and parse slash commands from the comments. However, in repositories with a lot of activity, the workflow queue gets backed up very quickly trying to handle new `issue_comment` events *and* process the commands themselves.
+Another way to trigger workflows is to configure a workflow on the [`issue_comment`](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#issue_comment) event and parse slash commands from the comments. However, in repositories with a lot of activity, the workflow queue gets backed up very quickly trying to handle new `issue_comment` events *and* process the commands themselves.
 
 I wanted to develop something that was a combination of these two methods.
 
@@ -59,7 +59,7 @@ Follow this guide to get started with a working `/example` command.
               <span class="pl-ent">comment-id</span>: <span class="pl-s">${{ github.event.client_payload.github.payload.comment.id }}</span>
               <span class="pl-ent">reaction-type</span>: <span class="pl-s">hooray</span></pre></div>
 
-3. Create a `repo` scoped Personal Access Token (PAT) by following [this guide](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
+3. Create a `repo` scoped Personal Access Token (PAT) by following [this guide](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
 
 4. Go to your repository `Settings` -> `Secrets` and `Add a new secret`.
 
@@ -93,7 +93,7 @@ Command processing setup is complete! Now we need to setup command dispatch for 
               <span class="pl-ent">commands</span>: <span class="pl-s">example</span>
               <span class="pl-ent">repository</span>: <span class="pl-s">your-github-username/slash-command-processor</span></pre></div>
 
-2. Create a new `repo` scoped [PAT](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line), OR, use the one created at step 3 of the [previous section](#command-processing-setup).
+2. Create a new `repo` scoped [PAT](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token), OR, use the one created at step 3 of the [previous section](#command-processing-setup).
 
 3. Go to your repository `Settings` -> `Secrets` and `Add a new secret`.
 
