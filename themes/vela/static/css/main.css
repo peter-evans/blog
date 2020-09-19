@@ -183,6 +183,7 @@ pre code {
 .single .datef {
 	margin-bottom: 40px;
 }
+.far span,
 .fas span,
 .fab span {
 	display: none;
