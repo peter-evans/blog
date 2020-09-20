@@ -193,7 +193,6 @@ header {
 	top: 0px;
 	left: 0px;
 	width: calc(100% - 30px);
-	height: 28px;
 	padding: 10px 15px 10px 15px;
 	position: fixed;
 	display: block;
