@@ -6,7 +6,7 @@ description: "How to wait for container X before starting Y using docker-compose
 keywords: ["docker", "docker compose", "container", "healthcheck", "dockerize"]
 ---
 
-Since docker-compose [version 2.1 file format](https://docs.docker.com/compose/compose-file/compose-versioning/#version-21) the [healthcheck](https://docs.docker.com/compose/compose-file/#healthcheck) parameter has been introduced.
+The [healthcheck](https://docs.docker.com/compose/compose-file/compose-file-v2/#healthcheck) property was originally introduced in the 2.1 Compose file format and is now part of the [Compose Specification](https://github.com/compose-spec/compose-spec/blob/master/spec.md) used by recent versions of Docker Compose.
 This allows a check to be configured in order to determine whether or not containers for a service are "healthy."
 
 ### How can I wait for container X before starting Y?
@@ -42,14 +42,16 @@ depends_on:
 In this complete example docker-compose waits for the PostgreSQL service to be "healthy" before starting [Kong](https://getkong.org/), an open-source API gateway. It also waits for an additional ephemeral container to complete Kong's database migration process.
 
 ```yml
-version: '2.1'
+version: '3.9'  # optional since Compose v1.27.0
 
 services:
   kong-database:
     image: postgres:9.5
+    container_name: kong-postgres
     environment:
       - POSTGRES_USER=kong
       - POSTGRES_DB=kong
+      - POSTGRES_HOST_AUTH_METHOD=trust
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -58,16 +60,18 @@ services:
 
   kong-migration:
     image: kong
+    container_name: kong-migration
     depends_on:
       kong-database:
         condition: service_healthy
     environment:
       - KONG_DATABASE=postgres
       - KONG_PG_HOST=kong-database
-    command: kong migrations up
+    command: kong migrations bootstrap
 
   kong:
     image: kong
+    container_name: kong
     restart: always
     depends_on:
       kong-database:
