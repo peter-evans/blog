@@ -12,6 +12,7 @@ The approach I took was based on solutions to the [gaps and islands](https://www
 Note that you can avoid needing a solution like this if you are able to upgrade to PostgreSQL 14 and take advantage of [multirange](https://www.postgresql.org/docs/14/rangetypes.html) types. If not, read on!
 
 Requirements for my particular use case:
+
 - Find gaps and islands between rows containing a numerical range, expressed as two columns, `from_id` and `to_id`.
 - Merge the islands (rows of contiguous ranges) into a single row.
 - Perform the merge and update the table in a single SQL transaction to avoid race conditions with concurrent processes.
