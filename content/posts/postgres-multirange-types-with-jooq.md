@@ -9,7 +9,7 @@ keywords: ["postgres", "postgresql", "multirange", "types", "jooq", "binding", "
 PostgreSQL 14 introduces built-in [multirange types](https://www.postgresql.org/docs/14/rangetypes.html).
 The existing range types store the beginning and end value of a single range, but the new multirange types can store a list of non-contiguous ranges.
 
-By default Postgres ouputs the built-in range types in a canonical form, where the lower bound is inclusive (`[`) and the upper bound is exclusive (`)`).
+By default Postgres outputs the built-in range types in a canonical form, where the lower bound is inclusive (`[`) and the upper bound is exclusive (`)`).
 ```
 SELECT id_ranges FROM example_table;
  id_ranges
