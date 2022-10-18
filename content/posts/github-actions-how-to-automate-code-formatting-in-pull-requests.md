@@ -47,7 +47,7 @@ How it works:
           <span class="pl-ent">args</span>: <span class="pl-s">--exit-code --recursive --in-place --aggressive --aggressive .</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
         <span class="pl-ent">id</span>: <span class="pl-s">git-check</span>
-        <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> $GITHUB_OUTPUT</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Push changes</span>
         <span class="pl-ent">if</span>: <span class="pl-s">steps.git-check.outputs.modified == 'true'</span>
         <span class="pl-ent">run</span>: <span class="pl-s">|</span>
@@ -78,7 +78,7 @@ Automated Python code formatting with [Black](https://github.com/psf/black) via 
           <span class="pl-ent">args</span>: <span class="pl-s">.</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
         <span class="pl-ent">id</span>: <span class="pl-s">git-check</span>
-        <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> $GITHUB_OUTPUT</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Push changes</span>
         <span class="pl-ent">if</span>: <span class="pl-s">steps.git-check.outputs.modified == 'true'</span>
         <span class="pl-ent">run</span>: <span class="pl-s">|</span>
@@ -105,7 +105,7 @@ Automated Javascript code formatting with [Prettier](https://prettier.io/).
         <span class="pl-ent">run</span>: <span class="pl-s">npx prettier --write src/**/*.js</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
         <span class="pl-ent">id</span>: <span class="pl-s">git-check</span>
-        <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> $GITHUB_OUTPUT</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Push changes</span>
         <span class="pl-ent">if</span>: <span class="pl-s">steps.git-check.outputs.modified == 'true'</span>
         <span class="pl-ent">run</span>: <span class="pl-s">|</span>
@@ -132,7 +132,7 @@ Automated Go code formatting with [gofmt](https://golang.org/cmd/gofmt/).
         <span class="pl-ent">run</span>: <span class="pl-s">gofmt -s -w .</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Check for modified files</span>
         <span class="pl-ent">id</span>: <span class="pl-s">git-check</span>
-        <span class="pl-ent">run</span>: <span class="pl-s">echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> $GITHUB_OUTPUT</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Push changes</span>
         <span class="pl-ent">if</span>: <span class="pl-s">steps.git-check.outputs.modified == 'true'</span>
         <span class="pl-ent">run</span>: <span class="pl-s">|</span>
