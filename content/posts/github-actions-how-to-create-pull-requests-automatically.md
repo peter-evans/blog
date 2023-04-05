@@ -44,13 +44,12 @@ Here is simple example that adds a dated report to a repository and raises a pul
   <span class="pl-ent">createPullRequest</span>:
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
-      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v2</span>
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v3</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Create report file</span>
         <span class="pl-ent">run</span>: <span class="pl-s">date +%s &gt; report.txt</span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v3</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v5</span>
         <span class="pl-ent">with</span>:
-          <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.GITHUB_TOKEN }}</span>
           <span class="pl-ent">commit-message</span>: <span class="pl-s">Add report file</span>
           <span class="pl-ent">title</span>: <span class="pl-s"><span class="pl-pds">'</span>[Example] Add report file<span class="pl-pds">'</span></span>
           <span class="pl-ent">body</span>: <span class="pl-s">&gt;</span>
@@ -77,16 +76,16 @@ A [Personal Access Token (PAT)](https://docs.github.com/en/github/authenticating
   <span class="pl-ent">update-dep</span>:
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
-      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v2</span>
-      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/setup-node@v1</span>
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v3</span>
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/setup-node@v3</span>
         <span class="pl-ent">with</span>:
-          <span class="pl-ent">node-version</span>: <span class="pl-s"><span class="pl-pds">'</span>12.x<span class="pl-pds">'</span></span>
+          <span class="pl-ent">node-version</span>: <span class="pl-s"><span class="pl-pds">'</span>16<span class="pl-pds">'</span></span>
       - <span class="pl-ent">name</span>: <span class="pl-s">Update dependencies</span>
         <span class="pl-ent">run</span>: <span class="pl-s">|</span>
 <span class="pl-s">          npx -p npm-check-updates ncu -u</span>
 <span class="pl-s">          npm install</span>
 <span class="pl-s"></span>      - <span class="pl-ent">name</span>: <span class="pl-s">Create Pull Request</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v3</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">peter-evans/create-pull-request@v5</span>
         <span class="pl-ent">with</span>:
             <span class="pl-ent">token</span>: <span class="pl-s">${{ secrets.PAT }}</span>
             <span class="pl-ent">commit-message</span>: <span class="pl-s">Update dependencies</span>
@@ -111,10 +110,10 @@ The above workflow works best in combination with a build workflow triggered on 
   <span class="pl-ent">build</span>:
     <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
     <span class="pl-ent">steps</span>:
-      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v2</span>
-      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/setup-node@v1</span>
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v3</span>
+      - <span class="pl-ent">uses</span>: <span class="pl-s">actions/setup-node@v3</span>
         <span class="pl-ent">with</span>:
-          <span class="pl-ent">node-version</span>: <span class="pl-s">12.x</span>
+          <span class="pl-ent">node-version</span>: <span class="pl-s">16</span>
       - <span class="pl-ent">run</span>: <span class="pl-s">npm ci</span>
       - <span class="pl-ent">run</span>: <span class="pl-s">npm run test</span>
       - <span class="pl-ent">run</span>: <span class="pl-s">npm run build</span></pre></div>
