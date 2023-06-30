@@ -12,3 +12,6 @@ rssLimit = 20
     author = "Peter Evans"
     description = "Thoughts and notes on software engineering, architecture and testing."
     keywords = ["Peter Evans", "software engineering", "software architecture", "software testing"]
+
+[markup.goldmark.renderer]
+unsafe = true
