@@ -6,7 +6,7 @@ description: "Thoughts on \"The Staff Engineer's Path\" by Tanya Reilly"
 keywords: ["staff", "engineer", "path", "book", "tanya", "reilly"]
 ---
 
-I recently read "The Staff Engineer's Path" by Tanya Reilly. This post shares some thoughts and highlight some points I found interesting about the book.
+I recently read "The Staff Engineer's Path" by Tanya Reilly. This post shares some thoughts and highlights some points I found interesting about the book.
 
 <img src="/img/the-staff-engineers-path.jpg" alt="The Staff Engineer's Path" width="250">
 
