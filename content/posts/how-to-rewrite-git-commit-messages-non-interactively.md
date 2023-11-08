@@ -29,6 +29,7 @@ The solution they outlined uses a git alias to rewrite the commit message non-in
 ```
 
 **Notes:**
+
 - The snippet above assumes two variables are set. The `commit_hash` of the commit to rewrite, and `new_commit_message` containing the string to replace the commit message with.
 - Getting the newlines to correctly render in the `amend!` message is tricky. Those lines are very deliberate to make sure the amend commit message is formatted correctly. This includes the double quotes around `$amend_message` in the `git commit` command.
 - The lines setting the user with `git config` include GitHub Actions context variables. Replace these if you are running the script elsewhere.
