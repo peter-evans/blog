@@ -28,7 +28,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
     <link href="{{ .Permalink }}" rel="canonical">
-    {{ if .RSSLink }}<link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />{{ end }}
+    {{ with .OutputFormats.Get "RSS" }}<link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="The blog of Peter Evans" />{{ end }}
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Roboto+Mono" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">

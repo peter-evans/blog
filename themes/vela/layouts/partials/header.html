@@ -8,7 +8,7 @@
             <li><a class="fab fa-github" href="https://github.com/peter-evans" target="_blank"><span>GitHub</span></a></li>
             <li><a class="fab fa-linkedin" href="https://www.linkedin.com/in/peter-evans" target="_blank"><span>LinkedIn</span></a></li>
             <li><a class="far fa-envelope" href="mailto:mail@peterevans.dev" target="_blank"><span>Email</span></a></li>
-            {{ if .RSSLink }}<li><a href="{{ .RSSLink }}" class="fas fa-rss" target="_blank"><span>RSS</span></a></li>{{ end }}
+            {{ with .OutputFormats.Get "RSS" }}<li><a href="{{ .RelPermalink }}" class="fas fa-rss" target="_blank"><span>RSS</span></a></li>{{ end }}
         </ul>
     </nav>
 </header>
