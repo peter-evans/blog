@@ -4,11 +4,11 @@
             <li><a href="https://peterevans.dev">{{ .Site.Title }}</a></li>
         </ul>
         <ul class="right-nav">
-            <li><a class="fab fa-twitter" href="https://twitter.com/peterevans0" target="_blank"><span>Twitter</span></a></li>
-            <li><a class="fab fa-github" href="https://github.com/peter-evans" target="_blank"><span>GitHub</span></a></li>
-            <li><a class="fab fa-linkedin" href="https://www.linkedin.com/in/peter-evans" target="_blank"><span>LinkedIn</span></a></li>
-            <li><a class="far fa-envelope" href="mailto:mail@peterevans.dev" target="_blank"><span>Email</span></a></li>
-            {{ with .OutputFormats.Get "RSS" }}<li><a href="{{ .RelPermalink }}" class="fas fa-rss" target="_blank"><span>RSS</span></a></li>{{ end }}
+            <li><a class="fab fa-twitter" href="https://twitter.com/peterevans0" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><span>Twitter</span></a></li>
+            <li><a class="fab fa-github" href="https://github.com/peter-evans" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span>GitHub</span></a></li>
+            <li><a class="fab fa-linkedin" href="https://www.linkedin.com/in/peter-evans" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span>LinkedIn</span></a></li>
+            <li><a class="far fa-envelope" href="mailto:mail@peterevans.dev" aria-label="Email"><span>Email</span></a></li>
+            {{ with .OutputFormats.Get "RSS" }}<li><a href="{{ .RelPermalink }}" class="fas fa-rss" aria-label="RSS Feed"><span>RSS</span></a></li>{{ end }}
         </ul>
     </nav>
 </header>
