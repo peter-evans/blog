@@ -1,6 +1,6 @@
 <script type="application/ld+json">
     {
-        "@context" : "http://schema.org",
+        "@context" : "https://schema.org",
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
                 "@type": "WebPage",
@@ -15,14 +15,24 @@
         "wordCount" : "{{ .WordCount }}",
         "keywords" : [ {{ if isset .Params "keywords" }}{{ range .Params.keywords }}"{{ . }}",{{ end }}{{ end }}{{ range .Site.Params.keywords }}"{{ . }}",{{ end }}"blog" ],
         "thumbnailUrl" : "{{ .Site.BaseURL }}img/og-image.jpg",
-        "image" : "{{ .Site.BaseURL }}img/og-image.jpg",
-        "author" : "{{ .Site.Params.Author }}",
-        "creator" : "{{ .Site.Params.Author }}",
-        "publisher": "{{ .Site.Params.Author }}",
-        "accountablePerson" : "{{ .Site.Params.Author }}",
-        "copyrightHolder" : "{{ .Site.Params.Author }}",
+        "image" : {
+            "@type": "ImageObject",
+            "url": "{{ .Site.BaseURL }}img/og-image.jpg"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "{{ .Site.Params.Author }}"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "{{ .Site.Params.Author }}"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "{{ .Site.Params.Author }}"
+        },
         "copyrightYear" : "{{ .Date.Format "2006" }}",
-        "dateModified" : "{{ .Date }}",
-        "datePublished": "{{ .Date }}"
+        "dateModified" : "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+        "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}"
     }
     </script>
