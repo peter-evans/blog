@@ -1,6 +1,6 @@
 {{ define "main" }}
     <div class="container home"> 
-        {{ range .Data.Pages.ByDate.Reverse }}
+        {{ range .Pages.ByDate.Reverse }}
         <article>
             <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
             <div class="datef">{{ .Date.Format "Monday, January 2, 2006" }}</div>
