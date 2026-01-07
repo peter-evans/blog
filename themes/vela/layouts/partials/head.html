@@ -30,7 +30,9 @@
     <link href="{{ .Permalink }}" rel="canonical">
     {{ with .OutputFormats.Get "RSS" }}<link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="The blog of Peter Evans" />{{ end }}
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Roboto+Mono" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&family=Roboto+Mono&display=swap" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/syntax.css" rel="stylesheet">
     <link href="/css/all.min.css" rel="stylesheet">
