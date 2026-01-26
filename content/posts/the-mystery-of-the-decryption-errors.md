@@ -10,7 +10,7 @@ In distributed systems the most unsettling failures are the ones that *almost* d
 Everything "works," but a tiny percentage of requests behave strangely.
 The impact might be low, but the implications can be serious, especially when encryption is involved.
 
-This is the story of a small, gradually increasing rate of decryption errors in a production system, what it took to track them down, and the deceptively simple fix.
+This is the story of a small, gradually increasing rate of decryption errors in a production system, what it took to track them down, and the deceptively simple fix.🕵️
 
 Copilot and AI agents have become a big part of my development and investigation workflow, but due to the nature of this bug it wasn't very helpful during investigation.
 However, Copilot *did inadvertently* lead me to the root cause in the end!
@@ -87,7 +87,7 @@ The batch job I created to verify the encrypted data had been scanning the encry
 I had used Copilot coding agent to help write the transition quickly, so at the time I didn't think much of it, but in the main application code the encrypted bytes were being scanned into a different type.
 That type was a custom type called `Bytes` that implemented the `database/sql` scanner interface.
 
-When the batch job was modified to use the same `Bytes` scanner type, I was suddenly able to reproduce the decryption errors!
+When the batch job was modified to use the same `Bytes` scanner type, I was suddenly able to reproduce the decryption errors!💡
 
 ### The bug
 
@@ -132,4 +132,4 @@ func (b *Bytes) Scan(value interface{}) error {
 }
 ```
 
-So this is a cautionary tale, that when implementing `Scan` you need to be aware that the `[]byte` you receive may be reused by the driver!
+So this is a cautionary tale, that when implementing `Scan` you need to be aware that the `[]byte` you receive may be reused by the driver! ⚠️

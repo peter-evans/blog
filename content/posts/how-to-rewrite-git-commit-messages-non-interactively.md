@@ -12,7 +12,7 @@ To explain the use case more fully, I was writing a GitHub Actions workflow that
 
 ### Rewriting Git commit messages
 
-It turns out that there are a number of ways to rewrite Git commit messages, but all of them seem to require interactive commands like `git rebase -i` or `git commit --amend`. Eventually I found a promising solution in [this Stackoverflow answer](https://stackoverflow.com/a/76797054/11934042). It emulates the behaviour of the interactive command `git commit --fixup=reword:<commit_hash>` to make it non-interactive.
+It turns out that there are a number of ways to rewrite Git commit messages, but all of them seem to require interactive commands like `git rebase -i` or `git commit --amend`. Eventually I found a promising solution in [this Stackoverflow answer](https://stackoverflow.com/a/76797054/11934042).🔍 It emulates the behaviour of the interactive command `git commit --fixup=reword:<commit_hash>` to make it non-interactive.
 
 The solution they outlined uses a git alias to rewrite the commit message non-interactively. I picked it apart into separate commands that can be run in a script or GitHub Actions workflow.
 

@@ -6,7 +6,7 @@ description: "How to support both cursor-based and page-based pagination in a si
 keywords: ["pagination", "cursor-based pagination", "page-based pagination", "keyset pagination", "api design", "go", "golang"]
 ---
 
-Pagination is one of those "solved problems" that keeps coming back to haunt us. Maybe you chose cursor-based pagination because it's more efficient for large datasets. Maybe your mobile team chose page-based pagination because users want to jump to "page 5." Now you need to support both, without breaking anyone!
+Pagination is one of those "solved problems" that keeps coming back to haunt us. Maybe you chose cursor-based pagination because it's more efficient for large datasets. Maybe your mobile team chose page-based pagination because users want to jump to "page 5." Now you need to support both, without breaking anyone! :sweat:
 
 This is pretty much the scenario I faced recently, and so I thought I'd share the approach I took to support multiple pagination strategies in a single API while maintaining backward compatibility.
 
@@ -195,4 +195,4 @@ Supporting multiple pagination strategies doesn't have to mean duplicating your 
 3. **Preserve type through the request cycle** — next cursor matches current strategy
 4. **Degrade gracefully** — unknown/malformed cursors reset to page 1, cursor-based
 
-This allowed the API I was working on to serve different clients with different needs through a single endpoint, without breaking changes.
+This allowed the API I was working on to serve different clients with different needs through a single endpoint, without breaking changes. :tada:
