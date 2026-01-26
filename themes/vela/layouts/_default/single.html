@@ -2,7 +2,7 @@
     <div class="container single">
         <article>
             <h2>{{ .Title }}</h2>
-            <div class="datef">{{ .Date.Format "Monday, January 2, 2006" }}</div>
+            <div class="datef">{{ .Date.Format "Monday, January 2, 2006" }} · {{ .ReadingTime }} min read</div>
             {{ .Content }}
         </article>
     </div>

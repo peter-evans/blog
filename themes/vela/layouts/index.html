@@ -3,7 +3,7 @@
         {{ range where site.RegularPages "Section" "posts" }}
         <article>
             <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-            <div class="datef">{{ .Date.Format "Monday, January 2, 2006" }}</div>
+            <div class="datef">{{ .Date.Format "Monday, January 2, 2006" }} · {{ .ReadingTime }} min read</div>
             {{ .Summary }}
         </article>
         {{ end }}
